@@ -5,25 +5,84 @@ Game
 
 {% block script %}
 <script>
-    
+    let words = JSON.parse('{{ words | tojson | safe}}');
+    var n = 0;
+    var score = 0;
+    var wrongScore = 0;
+    let correctArticle = words[n].article;
+
+    function checkArticle(){}
+
     document.addEventListener('DOMContentLoaded', function () {
-        let derButton = document.querySelector('#der');
-        derButton.addEventListener('click', function () {
-            console.log("der clicked")
-        })
+        // display the first word
+        document.querySelector("#word").innerHTML = words[n].word;
+
+        // get all the buttons
+        buttons = document.getElementsByName("article");
+        
+        // add listeners to all of the buttons
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function () {
+
+                // der button is pressed
+                if (buttons[i].innerHTML.localeCompare("der") == 0) {
+                    if (correctArticle.localeCompare("der") == 0) {
+                        console.log("correct article selected");
+                    }
+                    console.log("der pressed");
+                    n += 1;
+                    document.querySelector("#word").innerHTML = words[n].word;
+                    correctArticle = words[n].article;
+
+                }
+
+                // die button is pressed
+                else if (buttons[i].innerHTML.localeCompare("die") == 0) {
+                    if (correctArticle.localeCompare("die") == 0) {
+                        console.log("correct article selected");
+                    }
+                    console.log("die pressed");
+                    n += 1;
+                    document.querySelector("#word").innerHTML = words[n].word;
+                    correctArticle = words[n].article;
+                }
+
+                // das button is pressed
+                else if (buttons[i].innerHTML.localeCompare("das") == 0) {
+                    if (correctArticle.localeCompare("das") == 0) {
+                        console.log("correct article selected");
+                    }
+                    console.log("das pressed");
+                    n += 1;
+                    document.querySelector("#word").innerHTML = words[n].word;
+                    correctArticle = words[n].article;
+                }
+                // console.log(n);
+            })
+        }
+        
+        console.log(n);
+        /* derButton.addEventListener('click', function () {
+            var correctArticle = words[n].article;
+            console.log("der clicked");
+            n += 1;
+            document.querySelector("#word").innerHTML = words[n].word;
+        })*/
     })
 </script>
 {% endblock%}
 {% block main %}
 
 
-<p> {{words[12]["word"]}}</p>
+<p id="word"></p>
 
-<button class="btn btn-primary" name="article" type="submit" value="der" id="der">der</button>
-<form>
+<button class="btn btn-primary" name="article" value="der" id="der">der</button>
+<button class="btn btn-primary" name="article" value="die" id="die">die</button>
+<button class="btn btn-primary" name="article" value="das" id="das">das</button>
+<!-- <form>
     <button class="btn btn-primary" name="article" type="submit" value="der" id="der">der</button>
     <button class="btn btn-primary" name="article" type="submit" value="die" id="die">die</button>
     <button class="btn btn-primary" name="article" type="submit" value="das" id="das">das</button>
-</form>
+</form> -->
 
 {% endblock %}
