@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}
+Game
+{% endblock %}
+
+{% block script %}
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        let derButton = document.querySelector('#der');
+        derButton.addEventListener('click', function () {
+            console.log("der clicked")
+        })
+    })
+</script>
+{% endblock%}
+{% block main %}
+
+
+<p> {{words[12]["word"]}}</p>
+
+<button class="btn btn-primary" name="article" type="submit" value="der" id="der">der</button>
+<form>
+    <button class="btn btn-primary" name="article" type="submit" value="der" id="der">der</button>
+    <button class="btn btn-primary" name="article" type="submit" value="die" id="die">die</button>
+    <button class="btn btn-primary" name="article" type="submit" value="das" id="das">das</button>
+</form>
+
+{% endblock %}
