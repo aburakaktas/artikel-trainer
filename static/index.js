@@ -12,27 +12,18 @@ function getWordInfo(arr, id) {
 }
 
 function displayWord(wordInfo) {
-
     document.querySelector("#word").innerHTML = wordInfo.word;
+    document.querySelector("#score ").innerHTML = score;
 }
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log(words);
-
     // display the first word
-    
     displayWord(wordInfo);
 
-    // get buttons
-    derButton = document.getElementById("der");
-    dieButton = document.getElementById("die");
+
     dasButton = document.getElementById("das");
 
-
-
-    // event listener for buttons
-    // DAS
     dasButton.addEventListener('click', function () {
         var result = "das".localeCompare(wordInfo.article);
         console.log(result);
@@ -44,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("Das was incorrect");
         }
         id++;
-        displayWord(getWordInfo(words, id));
+        wordInfo = getWordInfo(words, id)
+        displayWord(wordInfo);
     });
 })
