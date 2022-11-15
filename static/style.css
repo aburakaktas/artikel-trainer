@@ -1,0 +1,34 @@
+.btn-correct {
+    animation:correct 1s 1 !important; 
+    -webkit-animation:correct 1s 1 !important; /* Safari and Chrome */
+}
+
+@keyframes correct
+{
+    0%      {background:green;}
+    100%    {background:green;}
+}
+
+@-webkit-keyframes correct /* Safari and Chrome */
+{
+    0%      {background:green;}
+    100%    {background:green;}
+}
+
+.btn-wrong {
+    animation:wrong 1s 1 !important; 
+    -webkit-animation:wrong 1s 1 !important; /* Safari and Chrome */
+
+
+}
+@keyframes wrong
+{
+    0%      {background:red;}
+    100%    {background:red;}
+}
+
+@-webkit-keyframes wrong /* Safari and Chrome */
+{
+    0%      {background:red;}
+    100%    {background:red;}
+}
