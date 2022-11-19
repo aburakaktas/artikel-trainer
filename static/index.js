@@ -1,20 +1,10 @@
-var id = 1;
-var score = 0;
-var wordInfo = getWordInfo(words, id);
-var answers = {};
 
-// get word info by providing the words array and a word id
-function getWordInfo(arr, id) {
-    for (var i = 0, len = arr.length; i < len; i++) {
-        if (arr[i].word_id == id) {
-            return arr[i];
-        }
-    }
-}
+var wordInfo = word;
+var answers = {};
 
 function displayWord(wordInfo) {
     document.querySelector("#word").innerHTML = wordInfo.word;
-    document.querySelector("#score ").innerHTML = score;
+    // document.querySelector("#score ").innerHTML = score;
 }
 
 
@@ -30,21 +20,21 @@ document.addEventListener('DOMContentLoaded', function () {
         if (result == 0) {
             console.log("Das was correct");
             dasButton.style.backgroundColor = ('green');
-            dasButton.style.transition = "all 2s"
-            
-            score++;
+            // dasButton.style.transition = "all 2s"
             answers[wordInfo.word_id] = "true";
-            
+            result = 1;
         }
         else {
             console.log("Das was incorrect");
             document.getElementById("das").style.backgroundColor = ('red');
             answers[wordInfo.word_id] = "false";
+            result = 0;
         }
-        
-        id++;
-        console.log(answers);
-        wordInfo = getWordInfo(words, id)
-        displayWord(wordInfo);
+        document.getElementById("result").value = result;
+        document.getElementById("word_id").value = wordInfo.word_id;
     });
+
+    
+
+
 })

@@ -6,7 +6,7 @@ Game
 {% block script %}
 
 <script>
-    let words = JSON.parse('{{ words | tojson | safe}}');
+    let word = JSON.parse('{{ word | tojson | safe}}');
 </script>
 <script src="/static/index.js"></script>
 {% endblock%}
@@ -18,11 +18,13 @@ Game
 <button class="btn btn-primary" name="article" value="der" id="der">der</button>
 <button class="btn btn-primary" name="article" value="die" id="die">die</button>
 <button class="btn btn-primary" name="article" value="das" id="das">das</button>
-<p class="mt-4" id="score"> 0 </p>
-<!-- <form>
-    <button class="btn btn-primary" name="article" type="submit" value="der" id="der">der</button>
-    <button class="btn btn-primary" name="article" type="submit" value="die" id="die">die</button>
-    <button class="btn btn-primary" name="article" type="submit" value="das" id="das">das</button>
-</form> -->
+<br>
+<br>
+<br>
+<form id="next" action="/" method="post">
+    <input type="hidden" id="result" name="result" value="">
+    <input type="hidden" id="word_id" name="word_id" value="">
+    <button class="btn btn-primary" id="next" type="submit">Next word</button>
+</form>
 
 {% endblock %}
