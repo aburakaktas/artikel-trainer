@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}
+Progres
+{% endblock %}
+
+{% block main %}
+<div class="col-3">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Word</th>
+                <th>Latest answer</th>
+                <th>2. Latest answer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for word in words %}
+            <tr>
+                <td>{{word["word"]}}</td>
+                {% if word["answer1"]%}
+                <td class="table-success">✓</td>
+                {% else%}
+                <td class="table-danger">X</td>
+                {% endif%}
+                {% if word["answer2"]%}
+                <td class="table-success">✓</td>
+                {% else%}
+                <td class="table-danger">X</td>
+                {% endif%}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form id="reset" action="/reset" method="post">
+        <button class="btn btn-danger" type="submit">Reset progress</button>
+    </form>
+</div>
+{% endblock %}

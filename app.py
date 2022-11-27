@@ -13,10 +13,11 @@ db = SQL("sqlite:///misc/trial2.db")
 
 
 @app.route("/", methods=["GET", "POST"])
-
 def index():
-    word = db.execute("SELECT * FROM words WHERE answer1 = ? OR answer2 = ? ORDER BY RANDOM() LIMIT 1", 0, 0)[0]
-    
+    wordList = db.execute("SELECT * FROM words WHERE answer1 = ? OR answer2 = ? ORDER BY RANDOM() LIMIT 1", 0, 0)
+    if not wordList:
+        return redirect("/progress")
+    word = wordList[0]
     if request.method == "GET":
         
         print("inside get:", word)
@@ -37,3 +38,15 @@ def index():
             
         print("this is result", result)
         return redirect("/")
+
+@app.route("/reset", methods=["POST"])
+def reset():
+    print("reset triggered")
+    db.execute("UPDATE words SET answer1 = ?, answer2 = ?", 0, 0)
+    return redirect("/progress")
+
+@app.route("/progress")
+def progress():
+    words = db.execute("SELECT * FROM words")
+    # print(words)
+    return render_template("/progress.html", words = words)
