@@ -2,7 +2,8 @@ const auth = "563492ad6f91700001000001630a8169735443afa60bcb18a3770de6";
 var wordInfo = word;
 
 function displayWord(wordInfo) {
-    document.querySelector("#word").innerHTML = wordInfo.word;
+    document.querySelector("#word-de").innerHTML = wordInfo.word_de;
+    document.querySelector("#word-en").innerHTML = "🇬🇧 " + wordInfo.word_en;
     // document.querySelector("#score ").innerHTML = score;
 }
 
@@ -33,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     // try to get the photo, if fails show a placeholder "image not found" image
     try {
-        var photoURL = getPhoto(wordInfo.word);
+        var photoURL = getPhoto(wordInfo.word_en);
         document.getElementById("word-image").src = await photoURL;
     } catch (error) {
         console.error(error);
