@@ -1,5 +1,0 @@
-CREATE TABLE words(
-    word_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    word TEXT NOT NULL,
-    article TEXT NOT NULL
-);
