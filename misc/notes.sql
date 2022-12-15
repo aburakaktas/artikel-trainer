@@ -1,5 +1,3 @@
-
-
 CREATE TABLE sqlite_sequence(name, seq);
 
 CREATE UNIQUE INDEX username ON users (username);
@@ -23,16 +21,12 @@ CREATE TABLE portfolio(
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-
-
-
 CREATE TABLE words(
     word_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     word_de TEXT NOT NULL,
     article TEXT NOT NULL,
     word_en TEXT,
 );
-
 
 CREATE TABLE users (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -50,3 +44,21 @@ CREATE TABLE answers(
     FOREIGN KEY (user_id) REFERENCES users (id),
     FOREIGN KEY (word_id) REFERENCES words (word_id)
 );
+
+SELECT *
+FROM words
+WHERE word_id IS NOT (SELECT word_id
+        FROM
+            answers
+        WHERE
+            answer1 = 1
+            AND answer2 = 1
+            AND answer3 = 1
+    )
+ORDER BY
+    RANDOM()
+LIMIT
+    1;
+
+
+SELECT * FROM words WHERE word_id IS NOT (SELECT word_id FROM answers WHERE answer1 = 1 AND answer2 = 1 AND answer3 = 1) ORDER BY RANDOM() LIMIT 1;

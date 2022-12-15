@@ -10,10 +10,11 @@ open("game.db", "w").close()
 db = cs50.SQL("sqlite:///game.db")
 
 # # # Create tables
-db.execute("CREATE TABLE words(word_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, word_de TEXT NOT NULL, article TEXT NOT NULL, word_en TEXT, answer1 INTEGER DEFAULT 0, answer2 INTEGER DEFAULT 0, answer3 INTEGER DEFAULT 0)")
-
+db.execute("CREATE TABLE words(word_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, word_de TEXT NOT NULL, article TEXT NOT NULL, word_en TEXT)")
+db.execute("CREATE TABLE users(user_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,username TEXT NOT NULL,hash TEXT NOT NULL,streak INTEGER NOT NULL DEFAULT 0);")
+db.execute("CREATE TABLE answers(user_id INTEGER NOT NULL,word_id INTEGER NOT NULL,answer1 INTEGER DEFAULT 0,answer2 INTEGER DEFAULT 0,answer3 INTEGER DEFAULT 0,FOREIGN KEY (user_id) REFERENCES users (user_id),FOREIGN KEY (word_id) REFERENCES words (word_id));")
 # Open CSV file
-with open("a1wordsraw.csv", "r") as file:
+with open("raw_csv_txt_files/a1wordsraw.csv", "r") as file:
 
     # Create DictReader
     reader = csv.DictReader(file)
@@ -23,7 +24,7 @@ with open("a1wordsraw.csv", "r") as file:
     for row in reader:
         word_de_raw = row["word-de"]
         for article in articleList:
-            match = re.findall(f"(^{article})\s([a-zA-Z0-9äöüÄÖÜß]*)", word_de_raw)
+            match = re.findall(f"(^{article})\s([a-zA-Z0-9äöüÄÖÜßé]*)", word_de_raw)
             if not match:
                 continue
             print(article, match[0][0], match[0][1])

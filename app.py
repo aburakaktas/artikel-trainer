@@ -12,6 +12,7 @@ app = Flask(__name__)
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
+
 # Ensure responses aren't cached
 @app.after_request
 def after_request(response):
@@ -29,6 +30,7 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///game.db")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -49,14 +51,15 @@ def login():
             return apology("must provide password", 403)
 
         # Query database for username
-        rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
+        rows = db.execute("SELECT * FROM users WHERE username = ?",
+                          request.form.get("username"))
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
             return apology("invalid username and/or password", 403)
 
         # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        session["user_id"] = rows[0]["user_id"]
 
         # Redirect user to home page
         return redirect("/")
@@ -83,6 +86,7 @@ def register():
 
     if request.method == "POST":
         # user is trying to register
+
         username = request.form.get("username")
         password = request.form.get("password")
         passwordConfirm = request.form.get("confirmation")
@@ -105,11 +109,15 @@ def register():
 
         # register
         passwordHashed = generate_password_hash(password)
-        # print(passwordHashed)
         loggedInId = db.execute(
             "INSERT INTO users (username, hash) VALUES(?,?)", username, passwordHashed)
-        # print(loggedInId)
         session["user_id"] = loggedInId
+
+        # create the empty answers for the new user
+        words = db.execute("SELECT * FROM words")
+        for word in words:
+            db.execute(
+                "INSERT INTO answers (user_id, word_id, answer1, answer2, answer3) VALUES(?,?,?,?,?)", session["user_id"], word['word_id'], 0, 0, 0)
         return redirect("/")
 
     else:
@@ -119,37 +127,40 @@ def register():
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
+    currentUserId = session['user_id']
+    print("this is the current user id: ", currentUserId)
+
+    # get the word that is not answered correctly 3 times in a row
     wordList = db.execute(
-        "SELECT * FROM words WHERE answer1 = ? OR answer2 = ? OR answer3 = ? ORDER BY RANDOM() LIMIT 1", 0, 0, 0)
-    # wordList = db.execute("SELECT * FROM words WHERE answer1 = ? ORDER BY RANDOM() LIMIT 1", 1)
+        "SELECT * FROM words WHERE word_id IS NOT (SELECT word_id FROM answers WHERE answer1 = 1 AND answer2 = 1 AND answer3 = 1) ORDER BY RANDOM() LIMIT 1")
+    
+    # if all the words are answered correctly 3 times in a row, redirect to the progress route
     if not wordList:
         return redirect("/progress")
+    
     word = wordList[0]
     if request.method == "GET":
-
-        print("inside get:", word)
         return render_template("index.html", word=word)
 
     else:
-        print("inside post:", word)
         result = request.form.get("result")
         wordId = request.form.get("word_id")
 
         # get the answer 2 and move it to answer 3
         answer2 = db.execute(
-            "SELECT * FROM words WHERE word_id = ?", wordId)[0]['answer2']
-        db.execute("UPDATE words SET answer3 = ? WHERE word_id = ?",
-                   answer2, wordId)
+            "SELECT * FROM answers WHERE user_id = ? AND word_id = ?", currentUserId, wordId)[0]['answer2']
+        db.execute("UPDATE answers SET answer3 = ? WHERE user_id = ? AND word_id = ?",
+                   answer2, currentUserId, wordId)
 
         # get the answer 1 and move it to answer 2
         answer1 = db.execute(
-            "SELECT * FROM words WHERE word_id = ?", wordId)[0]['answer1']
-        db.execute("UPDATE words SET answer2 = ? WHERE word_id = ?",
-                   answer1, wordId)
+            "SELECT * FROM answers WHERE user_id = ? AND word_id = ?", currentUserId, wordId)[0]['answer1']
+        db.execute("UPDATE answers SET answer2 = ? WHERE user_id = ? AND word_id = ?",
+                   answer1, currentUserId, wordId)
 
         # overwrite answer 1 with new answer
-        db.execute("UPDATE words SET answer1 = ? WHERE word_id = ?",
-                   int(result), wordId)
+        db.execute("UPDATE answers SET answer1 = ? WHERE user_id = ? AND word_id = ?",
+                   int(result), currentUserId, wordId)
 
         print("this is result", result)
         return redirect("/")
@@ -166,6 +177,8 @@ def reset():
 @app.route("/progress")
 @login_required
 def progress():
-    words = db.execute("SELECT * FROM words")
-    # print(words)
+    currentUserId = session['user_id']
+    words = db.execute(
+        "SELECT * FROM words LEFT OUTER JOIN answers ON words.word_id = answers.word_id WHERE answers.user_id = ?", currentUserId)
+    print(words)
     return render_template("/progress.html", words=words)
