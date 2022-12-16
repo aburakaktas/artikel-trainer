@@ -169,8 +169,9 @@ def index():
 @app.route("/reset", methods=["POST"])
 @login_required
 def reset():
+    currentUserId = session['user_id']
     print("reset triggered")
-    db.execute("UPDATE words SET answer1 = ?, answer2 = ?", 0, 0)
+    db.execute("UPDATE answers SET answer1 = ?, answer2 = ?, answer3 = ? WHERE user_id = ?", 0, 0, 0, currentUserId)
     return redirect("/progress")
 
 
