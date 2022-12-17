@@ -4,15 +4,15 @@ Progres
 {% endblock %}
 
 {% block main %}
-<div class="col-3">
+<div class="">
     <table class="table table-hover">
         <thead>
             <tr>
                 <th>Word</th>
                 <th>Meaning</th>
-                <th>Latest answer</th>
-                <th>2. Latest answer</th>
-                <th>3. Latest answer</th>
+                <th>Last answer</th>
+                <th>2. Last answer</th>
+                <th>3. Last answer</th>
             </tr>
         </thead>
         <tbody>
@@ -42,7 +42,7 @@ Progres
     </table>
 
     <form id="reset" action="/reset" method="post">
-        <button class="btn btn-danger" type="submit">Reset progress</button>
+        <button class="" type="submit">Reset progress</button>
     </form>
 </div>
 {% endblock %}

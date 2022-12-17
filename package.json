@@ -1,0 +1,23 @@
+{
+  "name": "artikel-game",
+  "version": "1.0.0",
+  "description": "my cs50 final project",
+  "main": "index.js",
+  "scripts": {
+    "watch-css": "npx tailwindcss -i ./static/css/src/input.css -o ./static/css/dist/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aburakaktas/artikel-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aburakaktas/artikel-game/issues"
+  },
+  "homepage": "https://github.com/aburakaktas/artikel-game#readme",
+  "dependencies": {
+    "tailwindcss": "^3.2.4"
+  }
+}
