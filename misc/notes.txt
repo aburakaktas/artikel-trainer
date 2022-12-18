@@ -1,0 +1,5 @@
+flask app run:
+flask --app app --debug run
+
+tailwind run:
+npm run watch-css

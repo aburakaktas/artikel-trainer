@@ -5,6 +5,9 @@ module.exports = {
   theme: {
     
     extend: {
+      boxShadow: {
+        'card-shadow': '2px 6px 20px rgba(0, 0, 0, 0.5)',
+      },
       fontFamily: {
         'sans': ['Inter', 'Helvetica', 'Arial', 'sans-serif'],
       },
