@@ -4,19 +4,36 @@ Login
 {% endblock %}
 
 {% block main %}
-
-<div class="">
-    <form class="" action="/register" method="post">
-        <div class="">
-            <input autocomplete="off" autofocus class="" id="username" name="username" placeholder="Username" type="text">
+<div class="flex mt-8 sm:mt-16 text-stone-900">
+    <!-- card -->
+    <div class="flex pt-4 pb-8 px-4 m-4 sm:m-auto flex-col space-y-8 max-sm:grow sm:flex-row sm:space-x-12 items-stretch bg-card_bg sm:pt-4 sm:pl-4 sm:pb-4 sm:pr-12  sm:w-[44rem] sm:h-[31rem] rounded-[2rem] shadow-card-shadow">
+        <!-- image -->
+        <div class="max-sm:h-56  sm:flex-1 items-stretch">
+            <img src="./static/loginimage.jpg" class="rounded-[1.25rem] inset-0 w-full h-full object-cover">
         </div>
-        <div class="">
-            <input class="" id="password" name="password" placeholder="Password" type="password">
+        <!-- right section -->
+        <div class="flex flex-1 flex-col justify-center">
+            <!-- form -->
+            <form class="flex flex-col space-y-5 mb-8" action="/register" method="post">
+                <div class="flex flex-col space-y-[0.375rem]">
+                    <p class="text-sm text-stone-900">Username</p>
+                    <input autocomplete="off" class="px-[0.875rem] py-[0.625rem] bg-button_bg rounded-lg border-2 border-button_bg focus:outline-none focus:bg-stone-50 focus:border-stone-900" name="username" type="text">
+                </div>
+                <div class="flex flex-col space-y-[0.375rem]">
+                    <p class="text-sm text-stone-900">Password</p>
+                    <input class="px-[0.875rem] py-[0.625rem] bg-button_bg rounded-lg border-2 border-button_bg focus:outline-none focus:bg-stone-50 focus:border-stone-900" name="password" type="password">
+                </div>
+                <div class="flex flex-col space-y-[0.375rem]">
+                    <p class="text-sm text-stone-900">Confirm password</p>
+                    <input class="px-[0.875rem] py-[0.625rem] bg-button_bg rounded-lg border-2 border-button_bg focus:outline-none focus:bg-stone-50 focus:border-stone-900" name="confirmation" type="password">
+                </div>
+                <button class="antialiased bg-primary hover:bg-primary_hover text-base text-white px-4 py-3 font-medium rounded-lg" type="submit">Register</button>
+            </form>
+            <div class="flex flex-col items-center space-y-1">
+                <p class="">Already have an account?</p>
+                <a href="/login" class="text-primary font-medium hover:underline">Sign in</a>
+            </div>
         </div>
-        <div class="">
-            <input class="" id="password-confirm" name="confirmation" placeholder="Confirm Password" type="password">
-        </div>
-        <button class="" type="submit">Register</button>
-    </form>
+    </div>
 </div>
 {% endblock %}
