@@ -3,7 +3,7 @@ var wordInfo = word;
 
 function displayWord(wordInfo) {
     document.querySelector("#word-de").innerHTML = wordInfo.word_de;
-    document.querySelector("#word-en").innerHTML = "🇬🇧 " + wordInfo.word_en;
+    document.querySelector("#word-en").innerHTML = wordInfo.word_en;
     // document.querySelector("#score ").innerHTML = score;
 }
 
@@ -20,7 +20,7 @@ async function getPhoto(prompt) {
         }
     );
     const result = await data.json();
-    let urlWithQuotes = JSON.stringify(result.photos[0].src.medium);
+    let urlWithQuotes = JSON.stringify(result.photos[0].src.large);
     let photoURL = urlWithQuotes.replace(/["]+/g, '');
     return photoURL;
 }
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
 
             // show the next word button
-            document.getElementById("next-word").style.display = "inline-block";
+            document.getElementById("next-word").style.opacity = "1";
 
             // fill the result and word_id to hidden elements to be sent to backend with a post request
             document.getElementById("result").value = result;
