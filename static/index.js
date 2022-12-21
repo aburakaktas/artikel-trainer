@@ -51,18 +51,22 @@ document.addEventListener('DOMContentLoaded', async function () {
             if (result == 0) {
                 console.log(currentArticle, "was correct");
                 // change button's color to green
-                currentButton.style.backgroundColor = "green";
+                // currentButton.style.backgroundColor = "green";
+                currentButton.classList.remove("bg-button_bg");
+                currentButton.classList.add("bg-correct", "text-white");
                 // set result value to 1 to make things simpler on backend
                 result = 1;
             }
 
             // user selected wrong article
             else {
-                // change button's color to red
+                // change correct button's color to green
                 let correctButton = document.getElementById(wordInfo.article);
-                correctButton.style.backgroundColor = "green";
-                currentButton.style.backgroundColor = "red";
-                console.log(currentArticle, "was incorrect");
+                correctButton.classList.remove("bg-button_bg");
+                correctButton.classList.add("bg-correct", "text-white");
+                // change current button's color to red
+                currentButton.classList.remove("bg-button_bg");
+                currentButton.classList.add("bg-wrong", "text-white");
                 // set result value to 0 to make things simpler on backend
                 result = 0;
             }
@@ -72,10 +76,13 @@ document.addEventListener('DOMContentLoaded', async function () {
                 let currentArticle = articleList[i];
                 let currentButton = document.getElementById(currentArticle);
                 currentButton.disabled = true;
+                currentButton.classList.remove("hover:bg-button_bg_hover");
             }
 
             // show the next word button
             document.getElementById("next-word").style.opacity = "1";
+            document.getElementById("next-word").disabled = false;
+            
 
             // fill the result and word_id to hidden elements to be sent to backend with a post request
             document.getElementById("result").value = result;

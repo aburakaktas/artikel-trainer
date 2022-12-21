@@ -10,9 +10,10 @@ Game
     img {
         opacity: 0;
     }
+
     img[src] {
         opacity: 1;
-     }
+    }
 </style>
 
 <script>
@@ -23,9 +24,9 @@ Game
 {% block main %}
 
 <!-- card -->
-<div class='flex flex-col max-w-[30rem] bg-card_bg space-y-6 m-auto text-stone-900 rounded-[2rem] mt-3 p-4 items-center'>
+<div class='flex flex-col sm:max-w-[30rem] bg-card_bg space-y-6  sm:m-auto text-stone-900 rounded-[2rem] max-sm:mx-4 max-sm:mt-8 sm:mt-16 px-4 pt-4 pb-6 items-center'>
     <!-- image -->
-    <div class="">
+    <div class="w-full">
         <img class="rounded-2xl w-full h-[22rem] object-cover indent-[100vw]" id="word-image" alt="">
     </div>
     <div class="flex flex-col items-center space-y-1">
@@ -33,16 +34,23 @@ Game
         <p class="text-stone-500" id="word-en"></p>
     </div>
     <div class="flex space-x-6">
-        <button class="bg-button_bg hover:bg-button_bg_hover rounded-2xl px-4 py-2 font-medium" name="article" value="der" id="der">Der</button>
+        <button class=" bg-button_bg   hover:bg-button_bg_hover rounded-2xl px-4 py-2 font-medium" name="article" value="der" id="der">Der</button>
         <button class="bg-button_bg hover:bg-button_bg_hover rounded-2xl px-4 py-2 font-medium" name="article" value="die" id="die">Die</button>
         <button class="bg-button_bg hover:bg-button_bg_hover rounded-2xl px-4 py-2 font-medium" name="article" value="das" id="das">Das</button>
     </div>
     <form id="next" action="/" method="post">
         <input type="hidden" id="result" name="result" value="">
         <input type="hidden" id="word_id" name="word_id" value="">
-        <button class="" id="next-word" type="submit" style="opacity: 0">Next word</button>
+        <button class="bg-button_bg border border-stone-900 hover:bg-button_bg_hover rounded-2xl px-4 py-2 font-medium inline-flex items-center" id="next-word" type="submit" style="opacity:0" disabled>
+            Next word
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+              </svg>
+              
+              
+        </button>
     </form>
 </div>
 
-  
+
 {% endblock %}

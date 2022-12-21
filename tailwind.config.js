@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: 'jit',
-  content: ["./templates/**/*.{html,js}"],
+  content: ["./templates/**/*.{html,js}", "./static/**/*.{html,js}"],
   theme: {
     
     extend: {
@@ -20,6 +20,8 @@ module.exports = {
         button_bg_hover: '#dec1ba',
         primary: '#c34e00',
         primary_hover: '#993d00',
+        correct: '#40BF74',
+        wrong: '#E41B27'
       }
     },
   },
