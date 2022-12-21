@@ -9,7 +9,7 @@ antworten,Er antwortet nicht.,to answer,He isn’t answering.
 (sich) anziehen,Ich muss mich noch anziehen.,to get dressed,I still need to get dressed.
 "das Apartment, -s",Wir haben ein Apartment gemietet.,apartment,We rented an apartment.
 "der Apfel, -Ä",Ein Pfund Äpfel bitte.,apple,"One pound of apples, please."
-der Appetit,Guten Appetit!,…,Bon appetit!
+der Appetit,Guten Appetit!,appetite,Bon appetit!
 arbeiten,Wo arbeiten Sie?,to work,Where do you work?
 "die Arbeit, -en",Mein Bruder sucht Arbeit.,work,My brother is looking for work.
 arbeitslos,"Es gibt bei uns viele Leute, die schon lange arbeitslos sind.",unemployed,We have a lot of people who have been unemployed for a long time.
@@ -205,7 +205,7 @@ enden,Die Straße endet hier.,to end,The street ends here.
 das Ende,Sie wohnt am Ende der Straße.,end,She lives at the end of the street.
 das Ende,Er bekommt sein Geld am Ende des Monats.,end,He gets his money at the end of the month.
 entschuldigen,Entschuldigen Sie bitte!,to excuse,"Excuse me, please!"
-die Entschuldigung,Entschuldigung! / Bitte.,…,Excuse me! / Sure.
+die Entschuldigung,Entschuldigung! / Bitte.,sorry,Excuse me! / Sure.
 er,Er heißt Ali.,he,He’s called Ali.
 "das Ergebnis, -se",Das Ergebnis des Tests bekommen Sie in zwei Wochen.,result,You will receive the test results in two weeks.
 erklären,Kannst du mir das erklären?,to explain,Can you explain that to me?
@@ -540,7 +540,7 @@ ohne,Ohne Geld kann er nichts kaufen.,without,Without money he can’t buy anyth
 das Öl,Den Salat machen wir ohne Öl.,oil,We make the salad without oil.
 "die Oma, -s",Meine Oma ist schon tot.,grandmother,My grandmother is already dead.
 "der Opa, -s",Mein Opa heißt Hans.,grandfather,My grandfather is called Hans.
-die Ordnung,Das ist in Ordnung.,…,That is in order/acceptable/fine.
+die Ordnung,Das ist in Ordnung.,order,That is in order/acceptable/fine.
 "der Ort, -e",Der Ort liegt am Meer.,location / place,That place is by the sea.
 das Papier,Hier sind Papier und Bleistift.,paper,Here is a pencil and paper.
 die Papiere (pl.),Haben Sie Ihre Papiere dabei?,papers,Do you have your papers with you?
@@ -604,7 +604,7 @@ schlecht,Sie sehen schlecht aus.,bad,You look bad.
 schlecht,Wir haben schlechtes Wetter.,bad,We have bad weather.
 schließen,"Bitte, schließen Sie die Tür.",to close,Please close the door.
 geschlossen,Die Bank hat am Samstag geschlossen.,closed,The bank is closed on Saturday.
-der Schluss,Ich muss jetzt Schluss machen.,…,I need to finish/wrap up now.
+der Schluss,Ich muss jetzt Schluss machen.,close / end,I need to finish/wrap up now.
 der Schluss,Zum Schluss gibt er uns allen die Hand.,end,"At the end, he shakes everyone’s hand."
 "der Schlüssel, –",Ich gebe Ihnen noch den Zimmerschlüssel.,key,I’ll give you the room key as well.
 schmecken,Schmeckt das gut?,to taste,Does that taste good?
@@ -733,7 +733,7 @@ von,Er kommt gerade von Köln/von zu Hause.,from,He’s coming from Cologne/home
 vor,Der Termin war vor einer Stunde.,ago,The appointment was an hour ago.
 vor,Das Auto steht vor der Tür.,in front of,The car is in front of the door.
 "der Vorname, -n","Ich heiße Müller, mein Vorname ist Eva.",first name,"I’m called Müller, my first name is Eva."
-die Vorsicht,Vorsicht! Da kommt ein Auto.,…,Careful! There’s a car coming.
+die Vorsicht,Vorsicht! Da kommt ein Auto.,caution,Careful! There’s a car coming.
 die Vorsicht,Er arbeitet mit Vorsicht.,attention,He works with caution.
 (sich) vorstellen,Wir wollen uns kennenlernen. Können Sie sich bitte vorstellen?,to introduce,We would like to get to know each other. Can you introduce yourself?
 die Vorwahl,Wie ist die Vorwahl von München?,area code,What is the area code for Munich?
@@ -771,8 +771,8 @@ wie,Wie groß ist die Wohnung?,how,How big is the flat?
 wie,Wie bitte?,…,Pardon?
 wie,Wie lange bist du schon hier?,how,How long have you been here already?
 wiederholen,Können Sie das bitte wiederholen?,to repeat,"Can you repeat that, please?"
-das Wiederhören,Auf Wiederhören!,…,Goodbye!
-das Wiedersehen,Auf Wiedersehen!,…,Goodbye!
+das Wiederhören,Auf Wiederhören!,goodbye,Goodbye!
+das Wiedersehen,Auf Wiedersehen!,goodbye,Goodbye!
 wie viel,Wie viel Milch nehmen Sie?,how much,How much milk do you take?
 willkommen,Herzlich willkommen!,…,Welcome!
 der Wind,Der Wind kommt aus Osten.,wind,The wind is coming from the east.
