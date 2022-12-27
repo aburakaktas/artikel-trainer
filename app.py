@@ -132,7 +132,7 @@ def index():
 
     # get the word that is not answered correctly 3 times in a row
     wordList = db.execute(
-        "SELECT * FROM words WHERE word_id IS NOT (SELECT word_id FROM answers WHERE answer1 = 1 AND answer2 = 1 AND answer3 = 1) ORDER BY RANDOM() LIMIT 1")
+        "SELECT * FROM words WHERE word_id NOT IN (SELECT word_id FROM answers WHERE user_id = ? AND answer1 = 1 AND answer2 = 1 AND answer3 = 1) ORDER BY RANDOM() LIMIT 1", currentUserId)
     
     # if all the words are answered correctly 3 times in a row, redirect to the progress route
     if not wordList:
@@ -161,7 +161,15 @@ def index():
         # overwrite answer 1 with new answer
         db.execute("UPDATE answers SET answer1 = ? WHERE user_id = ? AND word_id = ?",
                    int(result), currentUserId, wordId)
-
+        
+        # if answered correctly, increase the streak by 1:
+        if int(result) == 1:
+            db.execute("UPDATE users SET streak = streak + 1 WHERE user_id = ?", currentUserId)
+            
+        # if answered wrongly, reset the streak to 0:
+        if int(result) == -1:
+            db.execute("UPDATE users SET streak = 0 WHERE user_id = ?", currentUserId)
+            
         print("this is result", result)
         return redirect("/")
 

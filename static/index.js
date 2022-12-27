@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 currentButton.classList.remove("bg-button_bg");
                 currentButton.classList.add("bg-wrong", "text-white");
                 // set result value to 0 to make things simpler on backend
-                result = 0;
+                result = -1;
             }
 
             // disable all buttons

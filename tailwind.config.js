@@ -20,8 +20,8 @@ module.exports = {
         button_bg_hover: '#dec1ba',
         primary: '#c34e00',
         primary_hover: '#993d00',
-        correct: '#3AA757',
-        wrong: '#E41B27'
+        correct: '#5CA30B',
+        wrong: '#E2431F'
       }
     },
   },
