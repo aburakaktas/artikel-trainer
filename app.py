@@ -133,14 +133,24 @@ def index():
     # get the word that is not answered correctly 3 times in a row
     wordList = db.execute(
         "SELECT * FROM words WHERE word_id NOT IN (SELECT word_id FROM answers WHERE user_id = ? AND answer1 = 1 AND answer2 = 1 AND answer3 = 1) ORDER BY RANDOM() LIMIT 1", currentUserId)
-    
+
     # if all the words are answered correctly 3 times in a row, redirect to the progress route
     if not wordList:
         return redirect("/progress")
-    
+
     word = wordList[0]
     if request.method == "GET":
-        return render_template("index.html", word=word)
+
+        # get the streak info
+        streak = db.execute("SELECT * FROM users WHERE user_id = ?", currentUserId)[0]['streak']
+        
+        # get total number of words
+        totalWordCount = db.execute("SELECT COUNT(*) FROM answers WHERE user_id = ?", currentUserId)[0]['COUNT(*)']
+        
+        # get number of words user fully practiced (answered correctly 3 times in a row)
+        fullyPracticedWordCount = db.execute("SELECT COUNT(*) FROM answers WHERE user_id = ? AND answer1 = 1 AND answer2 = 1 AND answer3 = 1", currentUserId)[0]['COUNT(*)']
+        
+        return render_template("index.html", word=word, streak=streak, totalWordCount=totalWordCount, fullyPracticedWordCount=fullyPracticedWordCount)
 
     else:
         result = request.form.get("result")
@@ -161,15 +171,17 @@ def index():
         # overwrite answer 1 with new answer
         db.execute("UPDATE answers SET answer1 = ? WHERE user_id = ? AND word_id = ?",
                    int(result), currentUserId, wordId)
-        
+
         # if answered correctly, increase the streak by 1:
         if int(result) == 1:
-            db.execute("UPDATE users SET streak = streak + 1 WHERE user_id = ?", currentUserId)
-            
+            db.execute(
+                "UPDATE users SET streak = streak + 1 WHERE user_id = ?", currentUserId)
+
         # if answered wrongly, reset the streak to 0:
         if int(result) == -1:
-            db.execute("UPDATE users SET streak = 0 WHERE user_id = ?", currentUserId)
-            
+            db.execute(
+                "UPDATE users SET streak = 0 WHERE user_id = ?", currentUserId)
+
         print("this is result", result)
         return redirect("/")
 
@@ -179,7 +191,8 @@ def index():
 def reset():
     currentUserId = session['user_id']
     print("reset triggered")
-    db.execute("UPDATE answers SET answer1 = ?, answer2 = ?, answer3 = ? WHERE user_id = ?", 0, 0, 0, currentUserId)
+    db.execute("UPDATE answers SET answer1 = ?, answer2 = ?, answer3 = ? WHERE user_id = ?",
+               0, 0, 0, currentUserId)
     return redirect("/progress")
 
 
