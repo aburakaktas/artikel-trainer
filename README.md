@@ -1,7 +1,18 @@
 # Artikel trainer
 *This is my final project submission for [CS50](https://cs50.harvard.edu/x).*
 
-**Video demo:** [Link](https://www.youtube.com/watch?v=ak5ia7yuUo8)
+**Video demo:** 
+
+
+
+[![a](https://img.youtube.com/vi/ak5ia7yuUo8/maxresdefault.jpg)](https://www.youtube.com/watch?v=ak5ia7yuUo8)
+
+https://www.youtube.com/watch?v=ak5ia7yuUo8
+
+
+---
+
+<br>
 
 **Description:**
 
