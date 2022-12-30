@@ -1,4 +1,4 @@
-const auth = "563492ad6f91700001000001630a8169735443afa60bcb18a3770de6";
+const auth = "your api key";
 var wordInfo = word;
 
 function displayWord(wordInfo) {
